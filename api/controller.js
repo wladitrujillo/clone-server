@@ -19,7 +19,7 @@ const save = (req, res) => {
         platform: req.body.platform
     })
         .save()
-        .then(data => rest.status(200).json({ message: 'hacked :|' }))
+        .then(data => res.status(200).json({ message: 'hacked :|' }))
         .catch(err => console.error(err));
 }
 

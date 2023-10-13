@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { save, getById, getAll } = require('./controller')
+const { save, getById, getAll, deleteById } = require('./controller')
 
 router.route('/')
     .get(getAll)
     .post(save);
 
 router.route('/:id')
-    .get(getById);
+    .get(getById)
+    .delete(deleteById);
 
 router.get('/checkalive', (req, res) => {
     console.log('checkalive');

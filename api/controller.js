@@ -11,7 +11,6 @@ const Schema = new mongoose.Schema({
 const User = mongoose.model('eig_user', Schema);
 
 const save = (req, res) => {
-    console.log(req.body);
     new User({
         email: req.body.email,
         password: req.body.password,
@@ -29,6 +28,12 @@ const getById = (req, res) => {
         .catch(err => console.error(err));
 }
 
+const deleteById = (req, res) => {
+    User.findByIdAndDelete(req.params.id)
+        .then(data => res.status(200).json({ message: 'deleted ' + req.params.id }))
+        .catch(err => console.error(err));
+}
+
 const getAll = (req, res) => {
     User.find()
         .then(data => res.status(200).json(data))
@@ -38,5 +43,6 @@ const getAll = (req, res) => {
 module.exports = {
     save,
     getAll,
-    getById
+    getById,
+    deleteById
 }
